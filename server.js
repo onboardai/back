@@ -33,8 +33,10 @@ const server = http.createServer(app);
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://onboardai-32df.onrender.com/"],
+    origin: ["https://onboardai-32df.onrender.com"], // Your frontend URL
     credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Origin,X-Requested-With,Content-Type,Accept,Authorization",
   })
 );
 
