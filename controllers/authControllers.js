@@ -73,6 +73,9 @@ export const sellerRegister = async (req, res) => {
 
       const token = await createToken({ id: seller.id, role: seller.role });
       res.cookie("accessToken", token, {
+        httpOnly: true, // Prevents JavaScript access to cookies
+        secure: true, // Ensures cookies are only sent over HTTPS
+        sameSite: "None", // Required for cross-origin requests
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       });
 
@@ -96,6 +99,9 @@ export const sellerLogin = async (req, res) => {
           role: seller.role,
         });
         res.cookie("accessToken", token, {
+          httpOnly: true, // Prevents JavaScript access to cookies
+          secure: true, // Ensures cookies are only sent over HTTPS
+          sameSite: "None", // Required for cross-origin requests
           expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         });
         responseReturn(res, 200, { token, message: "Login Successful!" });

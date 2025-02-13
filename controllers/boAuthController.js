@@ -33,6 +33,9 @@ export const boRegister = async (req, res) => {
         method: createBO.method,
       });
       res.cookie("boToken", token, {
+        httpOnly: true, // Prevents JavaScript access to cookies
+        secure: true, // Ensures cookies are only sent over HTTPS
+        sameSite: "None", // Required for cross-origin requests
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       });
       responseReturn(res, 201, { message: "User Regisered", token });
@@ -156,6 +159,9 @@ export const boLogin = async (req, res) => {
           method: bo.method,
         });
         res.cookie("boToken", token, {
+          httpOnly: true, // Prevents JavaScript access to cookies
+          secure: true, // Ensures cookies are only sent over HTTPS
+          sameSite: "None", // Required for cross-origin requests
           expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         });
         responseReturn(res, 201, { message: "User Login Successful", token });
@@ -348,9 +354,9 @@ export const getBOProfile = async (req, res) => {
   const { username } = req.params;
 
   try {
-    const user = await BO.findOne({ "businessInfo.username" : username });
+    const user = await BO.findOne({ "businessInfo.username": username });
     responseReturn(res, 200, { user });
   } catch (error) {
     responseReturn(res, 500, { error: error.message });
   }
-}
+};
