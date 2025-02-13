@@ -18,23 +18,22 @@ import sellerChatRoutes from "./routes/seller/sellerChatRoutes.js";
 
 const server = http.createServer(app);
 
-app.use((req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://onboardai-five.vercel.app/"
-  ); // Your frontend URL
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, X-Requested-With"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header(
+//     "Access-Control-Allow-Origin",
+//     "https://onboardai-five.vercel.app/"
+//   ); // Your frontend URL
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Content-Type, Authorization, X-Requested-With"
+//   );
+//   next();
+// });
 
 app.use(
   cors({
-    // origin: ["http://localhost:3000", "https://onboardai-five.vercel.app/"],
-    origin: ["*"],
+    origin: ["http://localhost:3000", "https://onboardai-32df.onrender.com/"],
     credentials: true,
   })
 );
